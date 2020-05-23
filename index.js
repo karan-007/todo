@@ -7,6 +7,7 @@ todoList.addEventListener("keyup",saveNew);
 todoList.addEventListener("click", deleteTodo);
 todoList.addEventListener("dblclick", edit);
 todoInput.addEventListener("keyup", addTodo);
+document.body.addEventListener('click', fn);
 
 
 function addTodo(event) {
@@ -63,6 +64,17 @@ function deleteTodo(event) {
 
 }
 
+function fn(event){
+    const e= event.target;
+    const todos = document.getElementsByClassName("todo-item");
+    if(e.classList[0] != "todo-item"){
+        for(i=0;i<todos.length;i++){
+            if(!todos[i].disabled){
+                todos[i].disabled = true;
+            }
+        }
+    }
+}
 
 function edit(event){
     const e = event.target;
@@ -75,7 +87,7 @@ function saveNew(event){
     const e =event.target;
     if(e.classList[0] === "todo-item"){
     if (event.keyCode === 13) {
-        e.disabled = !e.disabled;
+        e.disabled = true;
     }
 }
 }
